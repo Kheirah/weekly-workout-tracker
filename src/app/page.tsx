@@ -1,12 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import WeeklyChart from "@/components/weekly-chart";
 import ExerciseForm from "@/components/exercise-form";
-import VoiceInput from "@/components/voice-input";
-import UserSelector from "@/components/user-selector";
 import ExerciseSelector from "@/components/exercise-selector";
-import UserProfile from "@/components/user-profile";
 import {
   Card,
   CardContent,
@@ -14,8 +9,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { users } from "@/lib/users";
+import UserProfile from "@/components/user-profile";
+import UserSelector from "@/components/user-selector";
+import VoiceInput from "@/components/voice-input";
+import WeeklyChart from "@/components/weekly-chart";
 import { exercises } from "@/lib/exercises";
+import { users } from "@/lib/users";
+import { useState } from "react";
 
 type User = {
   id: number;

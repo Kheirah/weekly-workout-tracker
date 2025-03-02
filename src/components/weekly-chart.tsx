@@ -1,16 +1,16 @@
 "use client";
 
+import { Card } from "@/components/ui/card";
 import {
-  BarChart,
   Bar,
-  XAxis,
-  YAxis,
+  BarChart,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
-import { Card } from "@/components/ui/card";
 
 interface ExerciseData {
   name: string;
@@ -101,7 +101,7 @@ export default function WeeklyChart({ userIds, exercises }: WeeklyChartProps) {
         }
       }
       return combinedDay;
-    }
+    },
   );
 
   if (combinedData.length === 0) {
@@ -136,7 +136,7 @@ export default function WeeklyChart({ userIds, exercises }: WeeklyChartProps) {
                 }
                 name={`User ${userId} ${exercise}`}
               />
-            ))
+            )),
           )}
         </BarChart>
       </ResponsiveContainer>

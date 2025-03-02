@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { useChat } from "@ai-sdk/react";
 import { Button } from "@/components/ui/button";
+import { useChat } from "@ai-sdk/react";
 import { Mic, MicOff } from "lucide-react";
+import { useState } from "react";
 
 export default function VoiceInput({ userId }: { userId: number }) {
   const [isListening, setIsListening] = useState(false);

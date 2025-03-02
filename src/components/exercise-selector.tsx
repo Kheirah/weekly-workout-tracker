@@ -1,6 +1,6 @@
-import type React from "react";
-import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
+import type React from "react";
 
 type Exercise = {
   id: number;
