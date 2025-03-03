@@ -1,17 +1,13 @@
 import { Button } from "@/components/ui/button";
+import type { Exercise } from "@/lib/schemas";
 import { Check } from "lucide-react";
 import type React from "react";
 
-type Exercise = {
-  id: number;
-  name: string;
-};
-
-type ExerciseSelectorProps = {
+interface ExerciseSelectorProps {
   exercises: Exercise[];
   selectedExercises: Exercise[];
   setSelectedExercises: React.Dispatch<React.SetStateAction<Exercise[]>>;
-};
+}
 
 export default function ExerciseSelector({
   exercises,

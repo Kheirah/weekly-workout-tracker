@@ -13,7 +13,9 @@ import UserProfile from "@/components/user-profile";
 import UserSelector from "@/components/user-selector";
 import VoiceInput from "@/components/voice-input";
 import WeeklyChart from "@/components/weekly-chart";
+import { categories } from "@/lib/categories";
 import { exercises } from "@/lib/exercises";
+import type { Exercise } from "@/lib/schemas";
 import { users } from "@/lib/users";
 import { useState } from "react";
 
@@ -21,11 +23,6 @@ type User = {
   id: number;
   name: string;
   avatar: string;
-};
-
-type Exercise = {
-  id: number;
-  name: string;
 };
 
 export default function Dashboard() {
@@ -94,7 +91,11 @@ export default function Dashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <ExerciseForm userId={activeUser.id} exercises={exercises} />
+              <ExerciseForm
+                userId={activeUser.id}
+                exercises={exercises}
+                categories={categories}
+              />
               <div className="mt-4">
                 <VoiceInput userId={activeUser.id} />
               </div>
