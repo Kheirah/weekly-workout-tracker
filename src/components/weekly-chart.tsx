@@ -11,6 +11,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import type { User, Exercise } from "@/lib/schemas";
 
 interface ExerciseData {
   name: string;
@@ -41,7 +42,7 @@ const userData: UserDataType = {
     { name: "Sat", Pushups: 28, Pullups: 38, Dips: 33 },
     { name: "Sun", Pushups: 30, Pullups: 40, Dips: 35 },
   ],
-  3: [
+  4: [
     { name: "Mon", Pushups: 25, Pullups: 35, Dips: 30 },
     { name: "Tue", Pushups: 28, Pullups: 38, Dips: 33 },
     { name: "Wed", Pushups: 32, Pullups: 42, Dips: 37 },
@@ -50,7 +51,7 @@ const userData: UserDataType = {
     { name: "Sat", Pushups: 38, Pullups: 48, Dips: 43 },
     { name: "Sun", Pushups: 40, Pullups: 50, Dips: 45 },
   ],
-  4: [
+  5: [
     { name: "Mon", Pushups: 18, Pullups: 28, Dips: 23 },
     { name: "Tue", Pushups: 20, Pullups: 30, Dips: 25 },
     { name: "Wed", Pushups: 25, Pullups: 35, Dips: 30 },
@@ -71,8 +72,8 @@ const colors = [
 ];
 
 interface WeeklyChartProps {
-  userIds: number[];
-  exercises: string[];
+  userIds: User["id"][];
+  exercises: Exercise["name"][];
 }
 
 export default function WeeklyChart({ userIds, exercises }: WeeklyChartProps) {

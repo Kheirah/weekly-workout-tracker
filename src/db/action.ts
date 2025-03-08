@@ -11,10 +11,6 @@ export async function addExercise(formData: FormData) {
     // Parse and validate form data
     const rawData = {
       name: formData.get("name"),
-      description: formData.get("description"),
-      category_id: formData.get("category_id")
-        ? Number(formData.get("category_id"))
-        : undefined,
       user_id: Number(formData.get("user_id")),
       reps: Number(formData.get("reps")),
       additional_weight: Number(formData.get("additional_weight")),
@@ -23,8 +19,6 @@ export async function addExercise(formData: FormData) {
     // Validate exercise data
     const validatedExercise = addExerciseFormSchema.parse({
       name: rawData.name,
-      description: rawData.description,
-      category_id: rawData.category_id,
     });
 
     // Get or create exercise to get its ID

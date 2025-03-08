@@ -1,11 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-
-type User = {
-  id: number;
-  name: string;
-  avatar: string;
-};
+import type { User } from "@/lib/schemas";
 
 type UserSelectorProps = {
   users: User[];
@@ -38,8 +33,8 @@ export default function UserSelector({
             }}
           >
             <Avatar className="w-8 h-8">
-              <AvatarImage src={user.avatar} alt={user.name} />
-              <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+              <AvatarImage src={user.avatar} alt={user.username} />
+              <AvatarFallback>{user.username.charAt(0)}</AvatarFallback>
             </Avatar>
           </Button>
         );

@@ -1,5 +1,15 @@
 import { z } from "zod";
 
+export const userSchema = z.object({
+  id: z.number(),
+  username: z.string().min(1).max(50),
+  email: z.string().email(),
+  isVerified: z.boolean().optional(),
+  lastLogin: z.date().optional(),
+  avatar: z.string().optional(),
+  created_at: z.date().optional(),
+});
+
 export const exerciseCategorySchema = z.object({
   id: z.number().optional(),
   name: z.string().min(1).max(50),
@@ -36,6 +46,7 @@ export const workoutLogSchema = z.object({
   performed_at: z.date().optional(),
 });
 
+export type User = z.infer<typeof userSchema>;
 export type ExerciseCategory = z.infer<typeof exerciseCategorySchema>;
 export type Exercise = z.infer<typeof exerciseSchema>;
 export type Session = z.infer<typeof sessionSchema>;

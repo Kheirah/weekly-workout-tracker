@@ -10,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { addExercise } from "@/db/action";
 import type { Exercise, ExerciseCategory } from "@/lib/schemas";
 import type React from "react";
@@ -18,7 +17,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 interface ExerciseFormProps {
-  userId: number;
+  userId: number | undefined;
   exercises: Exercise[];
   categories: ExerciseCategory[];
 }
@@ -29,17 +28,16 @@ export default function ExerciseForm({
   categories,
 }: ExerciseFormProps) {
   const [exercise, setExercise] = useState("");
-  const [description, setDescription] = useState("");
-  const [categoryId, setCategoryId] = useState<string>("");
   const [reps, setReps] = useState("");
   const [additionalWeight, setAdditionalWeight] = useState("0");
 
   const handleSubmit = async (formData: FormData) => {
-    formData.append("name", exercise);
-    formData.append("description", description);
-    if (categoryId) {
-      formData.append("category_id", categoryId);
+    if (!userId) {
+      toast.error("User ID is required");
+      return;
     }
+
+    formData.append("name", exercise);
     formData.append("reps", reps);
     formData.append("additional_weight", additionalWeight);
     formData.append("user_id", userId.toString());
@@ -48,8 +46,6 @@ export default function ExerciseForm({
       await addExercise(formData);
       toast.success(`Logged ${reps} ${exercise} for user ${userId}`);
       setExercise("");
-      setDescription("");
-      setCategoryId("");
       setReps("");
       setAdditionalWeight("0");
     } catch (error) {
@@ -77,35 +73,6 @@ export default function ExerciseForm({
       </div>
 
       <div>
-        <Label htmlFor="category">Category</Label>
-        <Select onValueChange={setCategoryId} value={categoryId}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select category" />
-          </SelectTrigger>
-          <SelectContent>
-            {categories.map((category) => (
-              <SelectItem
-                key={category.id}
-                value={category.id?.toString() ?? ""}
-              >
-                {category.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div>
-        <Label htmlFor="description">Description</Label>
-        <Textarea
-          id="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Exercise description"
-        />
-      </div>
-
-      <div>
         <Label htmlFor="reps">Reps</Label>
         <Input
           type="number"
@@ -126,11 +93,11 @@ export default function ExerciseForm({
           onChange={(e) => setAdditionalWeight(e.target.value)}
           placeholder="Additional weight in kg"
           min="0"
-          step="0.5"
+          step="1"
         />
       </div>
 
-      <Button type="submit">Log Exercise for User {userId}</Button>
+      <Button type="submit">Log Exercise</Button>
     </form>
   );
 }
