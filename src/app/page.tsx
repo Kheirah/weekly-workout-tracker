@@ -1,3 +1,4 @@
+import { Dashboard } from "@/components/dashboard";
 import ExerciseForm from "@/components/exercise-form";
 import {
   Card,
@@ -6,9 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import type { Exercise, ExerciseCategory, User } from "@/lib/schemas";
 import { neon } from "@neondatabase/serverless";
-import { Dashboard } from "@/components/dashboard";
-import type { User, Exercise, ExerciseCategory } from "@/lib/schemas";
 
 export default async function Home() {
   const sql = neon(`${process.env.WORKOUT_TRACKER_DATABASE_URL}`);

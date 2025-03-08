@@ -1,14 +1,14 @@
 "use client";
 
+import type { Exercise } from "@/lib/schemas";
+import type { User } from "@/lib/schemas";
+import { useState } from "react";
+import ExerciseSelector from "./exercise-selector";
 import { Card } from "./ui/card";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { useState } from "react";
-import UserSelector from "./user-selector";
-import ExerciseSelector from "./exercise-selector";
-import WeeklyChart from "./weekly-chart";
-import type { Exercise } from "@/lib/schemas";
 import UserProfile from "./user-profile";
-import type { User } from "@/lib/schemas";
+import UserSelector from "./user-selector";
+import WeeklyChart from "./weekly-chart";
 
 export function Dashboard({
   users,

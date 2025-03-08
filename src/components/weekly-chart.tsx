@@ -1,6 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
+import type { Exercise, User } from "@/lib/schemas";
 import {
   Bar,
   BarChart,
@@ -11,7 +12,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import type { User, Exercise } from "@/lib/schemas";
 
 interface ExerciseData {
   name: string;
